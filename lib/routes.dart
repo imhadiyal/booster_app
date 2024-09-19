@@ -1,5 +1,7 @@
-import 'package:booster_app/HomePage/home_page.dart';
+import 'package:booster_app/MusicPage/music_page.dart';
 import 'package:get/get.dart';
+
+import 'HomePage/home_page_1.dart';
 
 class Routes {
   Routes._();
@@ -8,7 +10,11 @@ class Routes {
   List<GetPage> get_pages = <GetPage>[
     GetPage(
       name: '/',
-      page: () => HomePage(),
+      page: () => HomePage1(),
+    ),
+    GetPage(
+      name: '/music_page',
+      page: () => MusicPage(),
     ),
   ];
 }
