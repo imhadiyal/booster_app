@@ -103,7 +103,7 @@ class HomePage1 extends StatelessWidget {
           ),
           Obx(() {
             return SizedBox(
-              height: 250,
+              height: 200,
               child: GridView.builder(
                 itemCount: controller.allMediya.length,
                 itemBuilder: (context, index) {

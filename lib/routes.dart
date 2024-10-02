@@ -1,7 +1,6 @@
-import 'package:booster_app/MusicPage/music_page.dart';
+import 'package:booster_app/pages/HomePage/home_page_1.dart';
+import 'package:booster_app/pages/MusicPage/music_page.dart';
 import 'package:get/get.dart';
-
-import 'HomePage/home_page_1.dart';
 
 class Routes {
   Routes._();
@@ -14,7 +13,7 @@ class Routes {
     ),
     GetPage(
       name: '/music_page',
-      page: () => MusicPage(),
+      page: () => const MusicPage(),
     ),
   ];
 }

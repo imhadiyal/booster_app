@@ -1,3 +1,4 @@
+import 'package:booster_app/controller/audio_controller.dart';
 import 'package:flutter/material.dart';
 
 class MusicPage extends StatelessWidget {
@@ -13,7 +14,7 @@ class MusicPage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.library_add),
+            icon: const Icon(Icons.favorite_border),
           ),
         ],
       ),
@@ -83,6 +84,18 @@ class MusicPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
+                    height: 24,
+                    width: 24,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('lib/assets/pre.png'),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  Container(
                     height: 74,
                     width: 75,
                     decoration: BoxDecoration(
@@ -90,16 +103,23 @@ class MusicPage extends StatelessWidget {
                       color: const Color.fromRGBO(97, 87, 226, 1),
                     ),
                     child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.pause_sharp),
+                      onPressed: () {
+                        MyAudioController my = MyAudioController();
+                        my.play();
+                      },
+                      icon: const Icon(Icons.pause_sharp),
                     ),
+                  ),
+                  const SizedBox(
+                    width: 50,
                   ),
                   Container(
                     height: 24,
                     width: 24,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.forward),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('lib/assets/next.png'),
+                      ),
                     ),
                   ),
                 ],
