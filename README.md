@@ -51,7 +51,5 @@ To run this project, you'll need the following:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/flutter-music-video-player.git
-
-
+   https://github.com/imhadiyal/booster_app
 
