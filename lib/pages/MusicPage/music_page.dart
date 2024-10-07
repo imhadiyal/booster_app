@@ -1,5 +1,7 @@
 import 'package:booster_app/controller/audio_controller.dart';
+import 'package:booster_app/modals/api_modals.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MusicPage extends StatelessWidget {
   const MusicPage({super.key});
@@ -7,9 +9,12 @@ class MusicPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    Media media = ModalRoute.of(context)!.settings.arguments as Media;
+    MyAudioController my = Get.put(MyAudioController());
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Music Page'),
+        title: const Text('Music Page'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -29,25 +34,26 @@ class MusicPage extends StatelessWidget {
               Container(
                 height: 319,
                 width: 304,
-                decoration: const BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.all(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(media
+                          .snippet.value.thumbnails.value.high.value.url.value),
+                      fit: BoxFit.fill),
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(36),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 50,
-              ),
-              const Text(
-                'data',
-                style: TextStyle(
-                  fontSize: 24,
+              Text(
+                media.snippet.value.title.value,
+                maxLines: 2,
+                style: const TextStyle(
+                  fontSize: 20,
                   fontWeight: FontWeight.w400,
                 ),
               ),
               SizedBox(
-                height: size.height * 0.06,
+                height: size.height * 0.04,
               ),
               Slider(
                 thumbColor: const Color.fromRGBO(97, 87, 226, 1),
@@ -56,20 +62,22 @@ class MusicPage extends StatelessWidget {
                 min: 0,
                 max: 100,
                 value: 50,
-                onChanged: (val) {},
+                onChanged: (val) {
+                  my.seek(second: val.toInt());
+                },
               ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '00:22',
+                    '25:50',
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: Color.fromRGBO(242, 242, 242, 1)),
                   ),
                   Text(
-                    '20:22',
+                    '50:30',
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -83,12 +91,17 @@ class MusicPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    height: 24,
-                    width: 24,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('lib/assets/pre.png'),
+                  GestureDetector(
+                    onTap: () {
+                      MyAudioController my = MyAudioController();
+                    },
+                    child: Container(
+                      height: 24,
+                      width: 24,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('lib/assets/pre.png'),
+                        ),
                       ),
                     ),
                   ),

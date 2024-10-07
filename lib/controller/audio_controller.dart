@@ -11,7 +11,7 @@ class MyAudioController {
   Future<void> init() async {
     await audioPlayer
         .open(
-      Audio("lib/assets/audios/Yaad.mp3"),
+      Audio.network("lib/assets/audios/Yaad.mp3"),
       autoStart: false,
     )
         .then(

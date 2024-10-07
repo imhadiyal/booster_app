@@ -6,9 +6,10 @@ import 'package:logger/logger.dart';
 
 class ApiHelper {
   ApiHelper._();
+  //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=makhna&key=AIzaSyAjsKOr0pzFUBL_JApcEcWzCWZMBnPAHXQ
   static final ApiHelper apiHelper = ApiHelper._();
-  final String baseUrl = 'https://www.googleapis.com/youtube/v3/';
-  final String key = 'AIzaSyCO2jsmh8SXhjCy8ssecJr8lpFP9LlPbvM';
+  final String baseUrl = 'https://www.googleapis.com/youtube/v3/search';
+  final String key = 'AIzaSyAjsKOr0pzFUBL_JApcEcWzCWZMBnPAHXQ';
 
   Future<List<Media>> initData({required String query}) async {
     try {

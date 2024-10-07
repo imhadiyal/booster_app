@@ -16,7 +16,10 @@ class HomePage1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const CircleAvatar(),
+        leading: const CircleAvatar(
+          backgroundImage: NetworkImage(
+              "https://t4.ftcdn.net/jpg/01/06/47/61/360_F_106476142_zMZkkTkhMeq0DIjV20oJI00e3QXLYIGN.jpg"),
+        ),
         title: const Text('Home Page'),
         actions: [
           IconButton(
@@ -27,11 +30,6 @@ class HomePage1 extends StatelessWidget {
             ),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.toNamed('/music_page');
-        },
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
@@ -69,33 +67,7 @@ class HomePage1 extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 30,
-          ),
-          const Text(
-            "Recently Played",
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-          ),
-          SizedBox(
-            height: 150,
-            child: ListView.builder(
-              itemBuilder: (c, i) {
-                return Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      height: 100,
-                      width: 100,
-                      color: Colors.blue,
-                    ),
-                    Text('data')
-                  ],
-                );
-              },
-              scrollDirection: Axis.horizontal,
-            ),
-          ),
-          SizedBox(
-            height: 10,
+            height: 20,
           ),
           const Text(
             'Recommend for you',
@@ -103,26 +75,51 @@ class HomePage1 extends StatelessWidget {
           ),
           Obx(() {
             return SizedBox(
-              height: 200,
-              child: GridView.builder(
+              height: 500,
+              child: ListView.builder(
                 itemCount: controller.allMediya.length,
                 itemBuilder: (context, index) {
                   Media media = controller.allMediya[index];
-                  return ListTile(
-                    contentPadding: EdgeInsets.all(10),
-                    horizontalTitleGap: 20,
-                    leadingAndTrailingTextStyle: TextStyle(fontSize: 50),
-                    leading: CircleAvatar(
-                      foregroundImage: NetworkImage(media
-                          .snippet.value.thumbnails.value.high.value.url.value),
-                      radius: 30,
-                      backgroundColor: Colors.blue,
+                  return GestureDetector(
+                    onTap: () {
+                      Get.toNamed(
+                        '/music_page',
+                        arguments: media,
+                      );
+                    },
+                    child: Card(
+                      child: ListTile(
+                        title: Text(
+                          media.snippet.value.title.value,
+                          maxLines: 2,
+                        ),
+                        contentPadding: const EdgeInsets.all(10),
+                        leadingAndTrailingTextStyle:
+                            const TextStyle(fontSize: 50),
+                        leading: SizedBox(
+                          height: 70,
+                          width: 70,
+                          child: CircleAvatar(
+                            foregroundImage: NetworkImage(media.snippet.value
+                                .thumbnails.value.high.value.url.value),
+                            radius: 30,
+                          ),
+                        ),
+                      ),
                     ),
-                    title: Text('data'),
                   );
+                  // return ListTile(
+                  //   contentPadding: EdgeInsets.all(10),
+                  //   leadingAndTrailingTextStyle: TextStyle(fontSize: 50),
+                  //   leading: CircleAvatar(
+                  //     foregroundImage: NetworkImage(media
+                  //         .snippet.value.thumbnails.value.high.value.url.value),
+                  //     radius: 30,
+                  //     backgroundColor: Colors.blue,
+                  //   ),
+                  //   title: Text('data'),
+                  // );
                 },
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1),
               ),
             );
           })
